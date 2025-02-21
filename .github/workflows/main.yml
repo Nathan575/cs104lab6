@@ -1,34 +1,41 @@
-name: Build Project
+name: Build Calculator Project
 
-# This will trigger the action on push or pull request to the 'main' branch
+# This will trigger the action on push to the 'main' branch
 on:
   push:
-    branches:
-      - main
-  pull_request:
     branches:
       - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Use a Linux runner, you can choose other runners like windows-latest if necessary
+    runs-on: ubuntu-latest  # You can use another runner like windows-latest or macos-latest if needed
 
     steps:
+    # Step 1: Checkout the repository code
     - name: Checkout repository
-      uses: actions/checkout@v2  # Checkout the code
+      uses: actions/checkout@v2
 
-    - name: Set up GCC
-      uses: actions/setup-java@v2  # For C/C++ you may use actions/setup-cpp if available, or install dependencies manually
-
+    # Step 2: Set up the build environment (if needed)
     - name: Install build dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install build-essential  # This installs GCC and other build tools
-    
-    - name: Build project
-      run: |
-        make all  # Or replace with the specific command you need to build your project
+        sudo apt-get install build-essential  # Installing necessary build tools, including gcc and make
 
+    # Step 3: Set up the directory (assuming $HOME is where your project is)
+    - name: Set up project directory
+      run: |
+        mkdir -p $HOME/project
+        cd $HOME/project
+        git clone https://github.com/Nathan575/cs104lab6.git $HOME/project/cs104lab6
+
+    # Step 4: Build the project using Makefile
+    - name: Build project with Makefile
+      run: |
+        cd $HOME/project/cs104lab6
+        make all  # Replace 'all' with the specific target in your Makefile if needed
+
+    # Optional: Step 5: Run tests (if applicable)
     - name: Run tests (Optional)
       run: |
-        make test  # Optional: if you have tests, run them after the buil
+        cd $HOME/project/cs104lab6
+        make test  # Run your tests if you have any
