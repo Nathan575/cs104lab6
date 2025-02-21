@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include "mathfuncs.h"  // Include the math functions
 #include "mathfuncs.h"  // Include math functions
-#include "random_functions.h"  // Include random functions
+#include "randfuncs.h"  // Include random functions
 
 using namespace std;
 
