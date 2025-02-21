@@ -1,0 +1,34 @@
+name: Build Project
+
+# This will trigger the action on push or pull request to the 'main' branch
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Use a Linux runner, you can choose other runners like windows-latest if necessary
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2  # Checkout the code
+
+    - name: Set up GCC
+      uses: actions/setup-java@v2  # For C/C++ you may use actions/setup-cpp if available, or install dependencies manually
+
+    - name: Install build dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install build-essential  # This installs GCC and other build tools
+    
+    - name: Build project
+      run: |
+        make all  # Or replace with the specific command you need to build your project
+
+    - name: Run tests (Optional)
+      run: |
+        make test  # Optional: if you have tests, run them after the buil
