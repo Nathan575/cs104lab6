@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cstdlib>
 #include "mathfuncs.h"  // Include the math functions
-=======
 #include "mathfuncs.h"  // Include math functions
 #include "random_functions.h"  // Include random functions
 
@@ -50,7 +49,6 @@ int main() {
             }
         }
 
-
         else if (command == "flip_coin") {
             cout << "Coin Flip: " << flip_coin() << endl;
         }
@@ -60,7 +58,6 @@ int main() {
         else if (command == "roll_d20") {
             cout << "Rolled a twenty-sided die: " << roll_twenty_sided_die() << endl;
         }
-
 
         else if (command == EXIT) {
             cout << "Exiting calculator. Goodbye!" << endl;
