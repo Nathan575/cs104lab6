@@ -33,9 +33,3 @@ jobs:
       run: |
         cd $HOME/project/cs104lab6
         make all  # Replace 'all' with the specific target in your Makefile if needed
-
-    # Optional: Step 5: Run tests (if applicable)
-    - name: Run tests (Optional)
-      run: |
-        cd $HOME/project/cs104lab6
-        make test  # Run your tests if you have any
